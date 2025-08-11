@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Clustering Results</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Clustering Results</h1>
+
+    <p>Clusters: {{ nclusters }} — Rows processed: {{ nrows }}</p>
+
+    <h2>Dendrogram</h2>
+    <img src="{{ dendrogram_path }}?v=1" alt="Dendrogram" class="dendrogram">
+
+    <h2>Clustered data (first rows)</h2>
+    <div class="table-wrapper">
+      {{ table_html | safe }}
+    </div>
+
+    <p>
+      <a class="btn" href="{{ csv_path }}" download>Download full clustered CSV</a>
+      <a class="btn" href="{{ url_for('index') }}">Run another</a>
+    </p>
+  </div>
+</body>
+</html>

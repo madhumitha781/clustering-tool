@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Hierarchical Clustering Tool</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Hierarchical Clustering (Upload CSV)</h1>
+    <p>Upload a CSV file. The app will encode text columns automatically and run hierarchical clustering on numeric features.</p>
+
+    {% if error %}
+      <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data">
+      <label>CSV file:</label>
+      <input type="file" name="file" accept=".csv" required>
+
+      <label>Number of clusters (>=2):</label>
+      <input type="number" name="num_clusters" value="3" min="2" required>
+
+      <button type="submit">Run Clustering</button>
+    </form>
+
+    <p class="notes">Notes: categorical columns will be label-encoded. If you want custom preprocessing, clean the CSV first.</p>
+  </div>
+</body>
+</html>
